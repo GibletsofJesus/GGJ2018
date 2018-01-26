@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ecd50049f73274c95446a556dbc0b7, type: 3}
+  m_Name: Combos
+  m_EditorClassIdentifier: 
+  combos:
+  - comboName: MegaUppercut
+    move:
+    - button: 01000000
+    - button: 0200000001000000
+    - button: 0800000004000000
+    combo: 010000000100200004001000
+  - comboName: MegaPunch
+    move:
+    - button: 01000000
+    - button: 0000020001000000
+    - button: 0080000001000000
+    - button: 0000010001000000
+    combo: 01000000010020000400100002000800
+  - comboName: Hadouken
+    move:
+    - button: 01000000
+    - button: 02000000
+    - button: 04000000
+    - button: 08000000
+    - button: 01000000
+    combo: 0100000002000000040000000800000001000000
+  - comboName: TestCombo
+    move:
+    - button: 02000000
+    - button: 01000000
+    combo: 0200000001000000
