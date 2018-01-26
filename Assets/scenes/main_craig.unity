@@ -166,6 +166,36 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[122].second.m_TileIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[122].second.m_TileSpriteIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileAssetArray.Array.data[2].m_RefCount
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileAssetArray.Array.data[3].m_RefCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[2].m_RefCount
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[3].m_RefCount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2948368b52d5aa044959921d4e85eac4, type: 2}
   m_IsPrefabParent: 0

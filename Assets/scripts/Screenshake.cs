@@ -15,6 +15,11 @@ public class Screenshake : MonoBehaviour {
 		duration+=dur;
 	}
 
+	IEnumerator directionalshake()
+	{
+		yield return new WaitForEndOfFrame();
+	}
+
 	void Update()
 	{
 		if (duration >0)
