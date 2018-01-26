@@ -1,0 +1,12 @@
+HI!
+
+All input needs to be controller based.  Use COntroller.Button() to get an enum of pressed buttons 
+or use Controller.GetButton(ControllerButton.CROSS) to see if a particular button is pressed.
+
+Jump is in, double jump and stomp (press down and Cross/B) or jump x3
+
+can't get wall junping in, and that sucks.
+
+gimme an update tomorrow or something init.
+
+SAFE
