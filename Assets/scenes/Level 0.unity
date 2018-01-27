@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &177611254
 Transform:
   m_ObjectHideFlags: 0
@@ -1034,6 +1034,91 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[39].second.m_TileSpriteIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[39].second.m_ColliderType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[2].m_RefCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[2].m_Data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[4].m_RefCount
+      value: 182
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[37].second.m_TileSpriteIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[37].second.m_TileColorIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[5].m_RefCount
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileColorArray.Array.data[0].m_RefCount
+      value: 217
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileColorArray.Array.data[2].m_RefCount
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[187].second.m_TileSpriteIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[187].second.m_TileColorIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[178].second.m_ColliderType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[154].second.m_TileSpriteIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_Tiles.Array.data[154].second.m_TileColorIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195094281975504638, guid: 2948368b52d5aa044959921d4e85eac4,
+        type: 2}
+      propertyPath: m_TileSpriteArray.Array.data[0].m_Data
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2948368b52d5aa044959921d4e85eac4, type: 2}
