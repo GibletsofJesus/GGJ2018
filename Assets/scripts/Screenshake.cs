@@ -9,6 +9,10 @@ public class Screenshake : MonoBehaviour {
 	public Vector3 camPosition;
 	float duration=0;
 	int amount;
+	void Start()
+	{
+		instance=this;
+	}
 	public void Shake(int _amount, float dur)
 	{
 		amount=_amount;

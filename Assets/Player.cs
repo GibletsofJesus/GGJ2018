@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     private int lives = 3;
     public float speed = 1.2f;
     private bool[] jump = new bool[3] { false,false, false };
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spRenderer;
     private void Awake()
     {
+        instance=this;
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         rayPos = new Vector2(transform.position.x, collider.bounds.min.y);
