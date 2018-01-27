@@ -26,6 +26,8 @@ public class Screenshake : MonoBehaviour {
 
 	void Update()
 	{
+		if (GameStateManager.instance.m_state == GameStateManager.GameStates.STATE_GAMEPLAY)
+		{
 		if (duration >0)
 		{
 			int x=1+Random.Range(0,amount);
@@ -37,8 +39,9 @@ public class Screenshake : MonoBehaviour {
 			Camera.main.transform.position=camPosition+new Vector3(x/8f,y/8f,0);
 			duration-=Time.deltaTime;
 		}
-		else		
+		else
 			Camera.main.transform.position=camPosition;
+		}
 	}
 }
 

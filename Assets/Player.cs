@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     private int lives = 3;
     public float maxHorizVelocity = 1.0f;
     public float speed = 1.2f;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spRenderer;
     private void Awake()
     {
+        instance=this;
         jumpsRemaining = totalJumps;
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();

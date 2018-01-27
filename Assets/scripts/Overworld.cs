@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Overworld : MonoBehaviour {
 
+	public static Overworld instance;
 	public Renderer m_rend;
 	Texture2D m_overlay;
 	public Level[] m_levels;
 
 	[System.Serializable]
 	public class Level{
-		public int r=8;
+		public float r=8;
 		public GameObject m_go;
 		public bool unlocked;
 	}
@@ -35,12 +36,22 @@ public class Overworld : MonoBehaviour {
 			pos*=m_overlay.width;
 			if (l.unlocked)
 			{
-				Circle(m_overlay,(int)pos.x,(int)pos.y,l.r,Color.black);
+				Circle(m_overlay,(int)pos.x,(int)pos.y,(int)l.r,Color.black);
 			}
 		}
 		
 		m_rend.material.SetTexture("_SliceGuide",m_overlay);
 		m_rend.material.SetFloat("_SliceAmount", 0.5f+(Mathf.Sin(Time.time)/2));
+	}
+
+    public IEnumerator RevealArea(int i)
+    {
+		m_levels[i].unlocked=true;
+		while (m_levels[i].r < 32)
+		{
+			m_levels[i].r+=Time.deltaTime*2;
+        	yield return new WaitForEndOfFrame();
+		}
 	}
 
   	public void Circle(Texture2D tex, int cx, int cy, int r, Color col)
