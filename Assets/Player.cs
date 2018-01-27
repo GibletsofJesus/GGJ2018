@@ -23,16 +23,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-       
-        { body.velocity = new Vector2(5*Controller.LX(), body.velocity.y);
+        {
+            body.velocity = new Vector2(5*Controller.LX(), body.velocity.y);
             if((Controller.Button()&ControllerButton.CIRCLE)!=0&&Controller.LX()!=0)
-            {
-               
-                body.AddForce(new Vector2(500* Controller.LX(), 0));
+            {               
+                //  body.AddForce(new Vector2(500* Controller.LX(), 0));
             }
         }
-
-
         spRenderer.flipX = body.velocity.x < 0;
         Jump();   
     }
@@ -85,7 +82,6 @@ public class Player : MonoBehaviour
                     if (Physics2D.Raycast(new Vector2(collider.bounds.max.x, transform.position.y), transform.right, 0.1f))
                     {
                         body.AddForce(jumpForce + new Vector2(0, 500));
-
                     }
                 }
             }
@@ -118,12 +114,13 @@ public class Player : MonoBehaviour
         while (lerpy<1)
         {
             lerpy += Time.deltaTime*2;
-            transform.rotation = Quaternion.Euler(0, 0, lerpy* (_dj?720:360));
+            //transform.rotation = Quaternion.Euler(0, 0, lerpy* (_dj?720:360));
             yield return new WaitForEndOfFrame();
         }
         body.simulated = true;
         body.AddForce(-jumpForce * 3);
     }
+
     public void Death()
     {
         Debug.Log("You died");
@@ -134,24 +131,20 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _col)
     {
-       
         if(jump[2])
         {
             for(int i=0;i<jump.Length;i++)
             {
                 jump[i] = false;
             }
-        }
-    }
+        }    }
 
 }
-
 
 enum JumpState
 {
     Once = 0,
     Twice = 1,
     Slam = 2,
-    Nope = 3,
-    
+    Nope = 3,    
 }
