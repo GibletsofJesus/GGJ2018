@@ -22,7 +22,7 @@ public class fuckyou : MonoBehaviour {
 		float lerpy=0;
 		while (lerpy<1)
 		{
-			lerpy+=Time.deltaTime*2.5f;
+			lerpy+=Time.deltaTime*1.5f;
 			spikeWall.transform.position =Vector3.Lerp(start,end,lerpy);
        		yield return new WaitForEndOfFrame();
 		}
