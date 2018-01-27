@@ -3,7 +3,6 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_TargetPosition("Target", vector) = (0,0,0,0)
 		_Radius("Radius", Range(0,20)) = 10
 		_BlendSize("Blend Size", Range(0,10)) = 5
 		_Tint("Shadow Colour", Color) = (0,0,0,1)
@@ -20,6 +19,8 @@
 		Pass
 		{
 			CGPROGRAM
+// Upgrade NOTE: excluded shader from DX11, OpenGL ES 2.0 because it uses unsized arrays
+#pragma exclude_renderers d3d11 gles
 			#pragma vertex vert
 			#pragma fragment frag
 #pragma multi_compile_fwdbase
@@ -42,7 +43,7 @@
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
-			float4 _TargetPosition;
+			float4 _TargetPosition[50];
 				float _Radius;
 				float _BlendSize;
 				float4 _Tint;
@@ -55,7 +56,8 @@
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.dist = distance(mul(unity_ObjectToWorld, v.vertex).xyz, _TargetPosition.xyz);
+
+				o.dist = distance(mul(unity_ObjectToWorld, v.vertex).xyz, _TargetPosition[0].xyz);
 				return o;
 			}
 			
@@ -79,7 +81,6 @@
 				float blend = (i.dist - _Radius);//*sinRad;
 				
 				col = lerp(tex2D(_MainTex, i.uv)*_LightColour, _Tint,blend/(_BlendSize*sinRad));// *blend);
-
 			}
 			else
 				col = _Tint;

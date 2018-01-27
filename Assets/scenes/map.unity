@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 162099238}
   - component: {fileID: 162099237}
   - component: {fileID: 162099236}
+  - component: {fileID: 162099240}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -265,12 +266,43 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 162099235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162099240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162099235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef9c845e538bab438beea8720b27c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rend: {fileID: 162099236}
+  m_levels:
+  - r: 24
+    m_go: {fileID: 10750215}
+    unlocked: 0
+  - r: 24
+    m_go: {fileID: 680585352}
+    unlocked: 0
+  - r: 24
+    m_go: {fileID: 1856848163}
+    unlocked: 0
+  - r: 24
+    m_go: {fileID: 555710271}
+    unlocked: 0
+  - r: 24
+    m_go: {fileID: 1453314149}
+    unlocked: 0
+  - r: 32
+    m_go: {fileID: 1524113571}
+    unlocked: 1
 --- !u!1 &555710271
 GameObject:
   m_ObjectHideFlags: 0
