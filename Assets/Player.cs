@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {  
+        if (transform.position.y < -5)
+        {
+            Objective.instance.RestartLevel();
+        }
         rayPos = new Vector2(transform.position.x, collider.bounds.min.y);
         if (wallJumping) {
             wallJumpTimer += Time.deltaTime;
@@ -43,10 +47,10 @@ public class Player : MonoBehaviour
             }
         }
         else {
-            if (Controller.LX() != 0) {
+            if (Controller.LX() != 0 && !slamming) {
                 body.velocity += 3 * Time.deltaTime * new Vector2(25*Controller.LX(), 0);
             }
-            else {
+            else if (!slamming){
                 body.velocity -= 5 * Time.deltaTime * new Vector2(body.velocity.x, 0);
             }
             if (Math.Abs(body.velocity.x) > maxHorizVelocity) {
@@ -62,8 +66,8 @@ public class Player : MonoBehaviour
         {
             if (Mathf.Abs(body.velocity.x)>.5f)
             {
-                spRenderer.sprite=m_sprites[Mathf.RoundToInt(frame/20)];
-                frame = frame<80 ? frame+1 : 0;
+                spRenderer.sprite=m_sprites[Mathf.RoundToInt(frame/10)];
+                frame = frame<40 ? frame+1 : 0;
             }
             else
             {
@@ -126,7 +130,6 @@ public class Player : MonoBehaviour
         {
             slamming=false;
             jumpsRemaining = totalJumps;
-            frame=0;
         }
         if ((Controller.Button() & ControllerButton.DOWN) != 0 && jumpsRemaining != totalJumps)
             {

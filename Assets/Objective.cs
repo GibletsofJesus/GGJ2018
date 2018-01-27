@@ -67,6 +67,7 @@ public class Objective : MonoBehaviour {
 	IEnumerator EndSequence()
 	{
 		Player.instance.enabled=false;
+		Player.instance.body.simulated=false;
 		float lerpy=0;
 		while (lerpy<1)
 		{
