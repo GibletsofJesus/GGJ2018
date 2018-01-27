@@ -1,12 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     private int lives = 3;
+    public float maxHorizVelocity = 1.0f;
     public float speed = 1.2f;
-    private bool[] jump = new bool[3] { false,false, false };
+    public bool wallJumping = false;
+    private float wallJumpTimer = 0.0f;
+    public int totalJumps = 3;
+    [SerializeField]
+    private int jumpsRemaining = 3;
     private Rigidbody2D body;
     Vector2 jumpForce = new Vector2(0, 500);
     BoxCollider2D collider;
@@ -15,6 +21,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spRenderer;
     private void Awake()
     {
+        jumpsRemaining = totalJumps;
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         rayPos = new Vector2(transform.position.x, collider.bounds.min.y);
@@ -23,17 +30,28 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-       
-        { body.velocity = new Vector2(5*Controller.LX(), body.velocity.y);
-            if((Controller.Button()&ControllerButton.CIRCLE)!=0&&Controller.LX()!=0)
-            {
-               
-                body.AddForce(new Vector2(500* Controller.LX(), 0));
+        if (wallJumping) {
+            wallJumpTimer += Time.deltaTime;
+            if (wallJumpTimer >= 0.1f) {
+                wallJumping = false;
             }
         }
-
-
-        spRenderer.flipX = body.velocity.x < 0;
+        else {
+            if (Controller.LX() != 0) {
+                body.velocity += 3 * Time.deltaTime * new Vector2(25*Controller.LX(), 0);
+            }
+            else {
+                body.velocity -= 5 * Time.deltaTime * new Vector2(body.velocity.x, 0);
+            }
+            if (Math.Abs(body.velocity.x) > maxHorizVelocity) {
+                body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -maxHorizVelocity, maxHorizVelocity) , body.velocity.y);
+            }
+            if((Controller.Button()&ControllerButton.CIRCLE)!=0&&Controller.LX()!=0)
+            {
+                body.AddForce(new Vector2(800* Controller.LX(), 0));
+            }
+            spRenderer.flipX = body.velocity.x < 0;
+        }
         Jump();   
     }
 
@@ -47,9 +65,18 @@ public class Player : MonoBehaviour
     #region Jumping Shit
     bool OnGround()
     {
-        if (Physics2D.Raycast(rayPos,-Vector2.up, 0.2f))
+        if (Physics2D.Raycast(rayPos, Vector2.down, 0.2f))
         {
             return true;
+        }
+        return false;
+    }
+
+    bool OnWall()
+    {
+        if (Physics2D.Raycast(new Vector2(spRenderer.flipX ? collider.bounds.min.x : collider.bounds.max.x, transform.position.y), spRenderer.flipX ? -transform.right : transform.right, 0.1f)) 
+        {
+             return true;
         }
         return false;
     }
@@ -58,54 +85,42 @@ public class Player : MonoBehaviour
     {
         if (OnGround())
         {
-            for (int i = 0; i < jump.Length; i++)
-            {
-                jump[i] = false;
-            }
+            jumpsRemaining = totalJumps;
         }
         if ((Controller.ButtonDown() & ControllerButton.CROSS) != 0)
         {
-            if ((Controller.Button() & ControllerButton.DOWN) != 0&&jump[0])
+            if ((Controller.Button() & ControllerButton.DOWN) != 0 && jumpsRemaining != totalJumps)
             {
-                jump[1] = true;
-                dj = false;
+                StartCoroutine(SlamPause(dj));
+                dj = true;
             }
             else if ((Controller.Button() & (spRenderer.flipX ? ControllerButton.LEFT : ControllerButton.RIGHT)) != 0)
             {
-               
                 if (spRenderer.flipX)
                 {
                     if (Physics2D.Raycast(new Vector2(collider.bounds.min.x, transform.position.y), -transform.right, 0.1f))
                     {
-                        body.AddForce(jumpForce + new Vector2(0, -500));
+                        body.AddForce(jumpForce + new Vector2(400, 0));
+                        wallJumping = true;
+                        wallJumpTimer = 0.0f;
+                        jumpsRemaining = 1;
                     }
                 }
                 else
                 {
                     if (Physics2D.Raycast(new Vector2(collider.bounds.max.x, transform.position.y), transform.right, 0.1f))
                     {
-                        body.AddForce(jumpForce + new Vector2(0, 500));
-
+                        body.AddForce(jumpForce + new Vector2(-400, 0));
+                        wallJumping = true;
+                        wallJumpTimer = 0.0f;
+                        jumpsRemaining = 1;
                     }
                 }
             }
-            if (!jump[0])
-            {
-                jump[0] = true;
-                body.AddForce(jumpForce);
-            }
-            else
-            {
-                if (!jump[1])
-                {
-                    jump[1] = true;
+            if (!wallJumping) {
+                if (jumpsRemaining != 0) {
                     body.AddForce(jumpForce);
-                }
-                else if (!jump[2])
-                {
-                    jump[2] = true;
-                    StartCoroutine(SlamPause(dj));
-                    dj = true;
+                    jumpsRemaining--;
                 }
             }
         }
@@ -121,6 +136,7 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, lerpy* (_dj?720:360));
             yield return new WaitForEndOfFrame();
         }
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         body.simulated = true;
         body.AddForce(-jumpForce * 3);
     }
@@ -134,14 +150,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _col)
     {
-       
-        if(jump[2])
-        {
-            for(int i=0;i<jump.Length;i++)
-            {
-                jump[i] = false;
-            }
-        }
+
     }
 
 }
