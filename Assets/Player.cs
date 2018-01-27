@@ -6,9 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player instance;
+
+    public Sprite[] m_sprites;
+    int frame;
+    
     private int lives = 3;
     public float maxHorizVelocity = 1.0f;
-    public float speed = 1.2f;
     public bool wallJumping = false;
     private float wallJumpTimer = 0.0f;
     public int totalJumps = 3;
@@ -31,7 +34,8 @@ public class Player : MonoBehaviour
     }
 
     private void Update()
-    {
+    {  
+        rayPos = new Vector2(transform.position.x, collider.bounds.min.y);
         if (wallJumping) {
             wallJumpTimer += Time.deltaTime;
             if (wallJumpTimer >= 0.1f) {
@@ -54,7 +58,16 @@ public class Player : MonoBehaviour
             }
             spRenderer.flipX = body.velocity.x < 0;
         }
-        Jump();   
+        if (OnGround())
+        {
+            spRenderer.sprite=m_sprites[Mathf.RoundToInt(frame/20)];
+            frame = frame<80 ? frame+1 : 0;
+        }
+        else
+            spRenderer.sprite=m_sprites[4];
+        Jump();
+            Debug.Log(OnWall());
+
     }
 
     IEnumerator Slide()
@@ -67,16 +80,20 @@ public class Player : MonoBehaviour
     #region Jumping Shit
     bool OnGround()
     {
-        if (Physics2D.Raycast(rayPos, Vector2.down, 0.2f))
+        Debug.DrawLine(rayPos,rayPos+(Vector2.down*(0.05f+Mathf.Abs(body.velocity.y/100))),Color.red,0.1f);
+        if (Physics2D.Raycast(rayPos, Vector2.down, 0.05f+Mathf.Abs(body.velocity.y/100)))
         {
             return true;
         }
+        frame=0;
         return false;
     }
 
     bool OnWall()
     {
-        if (Physics2D.Raycast(new Vector2(spRenderer.flipX ? collider.bounds.min.x : collider.bounds.max.x, transform.position.y), spRenderer.flipX ? -transform.right : transform.right, 0.1f)) 
+        Vector3 vec=new Vector3(spRenderer.flipX ? collider.bounds.min.x : collider.bounds.max.x, transform.position.y,0);
+        Debug.DrawLine(vec,vec+(spRenderer.flipX ? -transform.right: transform.right),Color.green,0.1f);
+        if (Physics2D.Raycast(vec, spRenderer.flipX ? -transform.right : transform.right, 0.1f)) 
         {
              return true;
         }
@@ -127,17 +144,23 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    bool slamming=false;
     IEnumerator SlamPause(bool _dj)
     {
+        slamming=true;
         body.velocity = Vector2.zero;
         body.simulated = false;
         float lerpy = 0;
+        body.constraints =RigidbodyConstraints2D.None;
         while (lerpy<1)
         {
-            lerpy += Time.deltaTime*2;
-            transform.rotation = Quaternion.Euler(0, 0, lerpy* (_dj?720:360));
+            lerpy += Time.deltaTime*4;
+            transform.rotation = Quaternion.Euler(0, 0, lerpy* 360);
             yield return new WaitForEndOfFrame();
         }
+        body.constraints =RigidbodyConstraints2D.FreezeRotation;
+        slamming=false;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         body.simulated = true;
         body.AddForce(-jumpForce * 3);

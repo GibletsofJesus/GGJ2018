@@ -28,9 +28,12 @@ public class Objective : MonoBehaviour {
 			pos.z=0;
 			m_background.transform.position=pos;
 		}
-		//if jump button
-		//Exit to overworld
-		//StartCoroutine(CircleTransition(false));
+		else if (GameStateManager.instance.m_state==GameStateManager.GameStates.STATE_GAMEPLAY)
+		{
+			//if jump button
+			//Exit to overworld
+			//StartCoroutine(CircleTransition(false));
+		}
 	}
 
 	IEnumerator CircleTransition(bool inout)
