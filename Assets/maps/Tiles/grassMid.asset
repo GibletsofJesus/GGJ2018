@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: grassMid
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 1f13069ad008a9e42a19204d4c8b2284, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9485294, g: 0.9485294, b: 0.9485294, a: 1}
   m_Transform:
     e00: 1
     e01: 0
@@ -32,4 +32,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 2
+  m_ColliderType: 1

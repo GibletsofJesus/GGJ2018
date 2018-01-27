@@ -14,10 +14,10 @@ public class Player : MonoBehaviour
     public float maxHorizVelocity = 1.0f;
     public bool wallJumping = false;
     private float wallJumpTimer = 0.0f;
-    public int totalJumps = 3;
+    public int totalJumps = 2;
     [SerializeField]
-    private int jumpsRemaining = 3;
-    private Rigidbody2D body;
+    private int jumpsRemaining = 2;
+    public Rigidbody2D body;
     Vector2 jumpForce = new Vector2(0, 500);
     BoxCollider2D collider;
     Vector2 rayPos;
@@ -60,14 +60,28 @@ public class Player : MonoBehaviour
         }
         if (OnGround())
         {
-            spRenderer.sprite=m_sprites[Mathf.RoundToInt(frame/20)];
-            frame = frame<80 ? frame+1 : 0;
+            if (Mathf.Abs(body.velocity.x)>.5f)
+            {
+                spRenderer.sprite=m_sprites[Mathf.RoundToInt(frame/20)];
+                frame = frame<80 ? frame+1 : 0;
+            }
+            else
+            {
+                spRenderer.sprite=m_sprites[5+Mathf.RoundToInt(Time.time%1)];
+            }
         }
-        else
+        else if (OnWall() && !slamming)
+        {
+            if (Controller.LX() > 0.25f && !spRenderer.flipX)
+             spRenderer.sprite=m_sprites[7];
+            else if (Controller.LX() < -0.25f && spRenderer.flipX)
+             spRenderer.sprite=m_sprites[7];
+            else
+            spRenderer.sprite=m_sprites[4];
+        }
+            else
             spRenderer.sprite=m_sprites[4];
         Jump();
-            Debug.Log(OnWall());
-
     }
 
     IEnumerator Slide()
@@ -85,35 +99,45 @@ public class Player : MonoBehaviour
         {
             return true;
         }
-        frame=0;
         return false;
     }
 
     bool OnWall()
     {
         Vector3 vec=new Vector3(spRenderer.flipX ? collider.bounds.min.x : collider.bounds.max.x, transform.position.y,0);
-        Debug.DrawLine(vec,vec+(spRenderer.flipX ? -transform.right: transform.right),Color.green,0.1f);
-        if (Physics2D.Raycast(vec, spRenderer.flipX ? -transform.right : transform.right, 0.1f)) 
+        Debug.DrawLine(vec,vec+(spRenderer.flipX ? -transform.right*0.05f: transform.right*0.05f),Color.green,0.1f);
+        if (Physics2D.Raycast(vec, spRenderer.flipX ? -transform.right : transform.right, 0.05f)) 
         {
              return true;
         }
         return false;
     }
 
+    //For breaking boxes
+    public float lastyVel=0;
+    void LateUpdate()
+    {
+        lastyVel=body.velocity.y;
+    }
+
     void Jump()
     {
         if (OnGround())
         {
+            slamming=false;
             jumpsRemaining = totalJumps;
+            frame=0;
         }
-        if ((Controller.ButtonDown() & ControllerButton.CROSS) != 0)
-        {
-            if ((Controller.Button() & ControllerButton.DOWN) != 0 && jumpsRemaining != totalJumps)
+        if ((Controller.Button() & ControllerButton.DOWN) != 0 && jumpsRemaining != totalJumps)
             {
-                StartCoroutine(SlamPause(dj));
+                if ((Controller.ButtonDown() & ControllerButton.SQUARE) != 0)
+             {   StartCoroutine(SlamPause(dj));
                 dj = true;
             }
-            else if ((Controller.Button() & (spRenderer.flipX ? ControllerButton.LEFT : ControllerButton.RIGHT)) != 0)
+            }
+        if ((Controller.ButtonDown() & ControllerButton.CROSS) != 0)
+        {      
+            if ((Controller.Button() & (spRenderer.flipX ? ControllerButton.LEFT : ControllerButton.RIGHT)) != 0)
             {
                 if (spRenderer.flipX)
                 {
@@ -145,7 +169,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    bool slamming=false;
+    public bool slamming=false;
     IEnumerator SlamPause(bool _dj)
     {
         slamming=true;
@@ -160,7 +184,6 @@ public class Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         body.constraints =RigidbodyConstraints2D.FreezeRotation;
-        slamming=false;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         body.simulated = true;
         body.AddForce(-jumpForce * 3);
@@ -177,15 +200,11 @@ public class Player : MonoBehaviour
     {
 
     }
-
 }
-
-
 enum JumpState
 {
     Once = 0,
     Twice = 1,
     Slam = 2,
-    Nope = 3,
-    
+    Nope = 3,    
 }

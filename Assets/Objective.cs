@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour {
 
+	public static Objective instance;
 	bool triggered;
 	public int level_index;
 	public Renderer m_circletransition; 
@@ -17,6 +18,7 @@ public class Objective : MonoBehaviour {
 	}
 	void Start()
 	{
+		instance=this;
 		StartCoroutine(CircleTransition(true));
 	}
 	void Update()
@@ -36,9 +38,21 @@ public class Objective : MonoBehaviour {
 		}
 	}
 
+	public void RestartLevel()
+	{
+		StartCoroutine(CircleTransition(false));
+		StartCoroutine(restart());
+	}
+
+	IEnumerator restart()
+	{
+		yield return new WaitForSeconds(1.05f);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Level "+level_index);
+	}
+
 	IEnumerator CircleTransition(bool inout)
 	{
-		if (inout) yield return new WaitForSeconds(1);
+		if (inout) yield return new WaitForSeconds(.25f);
 		float lerpy=0;
 		while (lerpy<1)
 		{
@@ -52,6 +66,7 @@ public class Objective : MonoBehaviour {
 	//Zoom in on player, maybe change sprite to a thumbs up ting
 	IEnumerator EndSequence()
 	{
+		Player.instance.enabled=false;
 		float lerpy=0;
 		while (lerpy<1)
 		{
@@ -62,6 +77,13 @@ public class Objective : MonoBehaviour {
 			Camera.main.orthographicSize=Mathf.Lerp(5,1.5f,lerpy);
         	yield return new WaitForEndOfFrame();
 		}
+			while ((Controller.ButtonDown() & ControllerButton.CROSS) == 0)
+			{
+				yield return null;
+			}
+			StartCoroutine(CircleTransition(false));
+			level_index++;
+			StartCoroutine(restart());
 	}
 
 }

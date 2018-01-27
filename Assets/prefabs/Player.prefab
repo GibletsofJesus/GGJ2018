@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1882990523351004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.994, y: 2.37, z: 0}
+  m_LocalPosition: {x: -4.02, y: -3.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61663025401782574
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -105,10 +105,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f1e170a4ea2be984ab9e2f865d6d2c0a, type: 3}
   - {fileID: 21300000, guid: ffc30892ff724e340bb32a6c160159d5, type: 3}
   - {fileID: 21300000, guid: f9ad8750e44fa624ebaef9edf562e0da, type: 3}
+  - {fileID: 21300000, guid: 0256d6976a960ef4bb27443f93e215a9, type: 3}
+  - {fileID: 21300000, guid: 4f38bab16a17f0743967d60c0e79fa41, type: 3}
+  - {fileID: 21300000, guid: c71051808828c454aa7ae3a3fd2eee7d, type: 3}
   maxHorizVelocity: 5
   wallJumping: 0
-  totalJumps: 3
-  jumpsRemaining: 3
+  totalJumps: 2
+  jumpsRemaining: 2
+  body: {fileID: 0}
+  lastyVel: 0
+  slamming: 0
 --- !u!212 &212872701709326216
 SpriteRenderer:
   m_ObjectHideFlags: 1
