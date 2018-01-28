@@ -150,9 +150,12 @@ public class Player : MonoBehaviour
     {
 
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100));
-        if (hit.collider.gameObject.GetComponent<IGetHit>() != null)
+        if (hit)
         {
-            hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
+            if (hit.collider.gameObject.GetComponent<IGetHit>() != null)
+            {
+                hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
+            }
         }
         slamming = false;
         lastyVel = body.velocity.y;
