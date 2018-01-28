@@ -219,6 +219,7 @@ public class Player : MonoBehaviour
     public void DeathSfx()
     {
         SoundManager.instance.PlaySound(death_sfx[UnityEngine.Random.Range(0,death_sfx.Length-1)]);
+        GameOver.instance.Died();
     }
 
     public bool slamming = false;
