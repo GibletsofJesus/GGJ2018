@@ -10,6 +10,8 @@ public class UI : MonoBehaviour
     public Transform moveTriggerPos;
     public Transform slamTriggerPos;
     public Text instructional;
+    public Image[] button;
+    public Sprite[] buttonSprites;
     
     bool controller = false; //0 for ps4, 1 for xbox
 	// Use this for initialization
@@ -32,7 +34,8 @@ public class UI : MonoBehaviour
         }
         else if (PromptDistance(jumpTriggerPos.position))
         {
-            instructional.text = "Press " + (controller ? "B " : "Cross ") + "To Jump";
+            instructional.text = "To Jump press ";
+            button[0].sprite = buttonSprites[0];
             if (!instructional.gameObject.activeInHierarchy)
             {
                 instructional.transform.position = jumpTriggerPos.position;

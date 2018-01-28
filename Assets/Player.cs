@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     {
         if (body.velocity.y < 0)
         {
-            body.velocity += Vector2.up * Physics2D.gravity.y * ((slamming ? stompMulti : fallMulti) - 1) * Time.deltaTime;
+            body.velocity += Vector2.up * Physics2D.gravity.y * ((slamming ?1 : fallMulti) - 1) * Time.deltaTime;
         }
         else if (body.velocity.y > 0 && !Controller.GetButton(ControllerButton.CROSS))
         {
@@ -237,7 +237,7 @@ public class Player : MonoBehaviour
         body.constraints = RigidbodyConstraints2D.FreezeRotation;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         body.simulated = true;
-        body.velocity = -Vector2.up * jumpVel;
+        body.AddForce(-jumpForce * 3);
     }
     public void Death()
     {
