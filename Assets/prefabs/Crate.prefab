@@ -112,6 +112,7 @@ MonoBehaviour:
   m_ps: {fileID: 198541552188971356}
   m_col: {fileID: 61866602611879922}
   m_spr: {fileID: 212279570050550122}
+  smash: {fileID: 8300000, guid: 5e0c9a938735a6c4f81a0420c7358545, type: 3}
 --- !u!198 &198541552188971356
 ParticleSystem:
   m_ObjectHideFlags: 1

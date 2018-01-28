@@ -16,10 +16,19 @@ public class Bun : MonoBehaviour, IGetHit {
 	{
 		if (c.gameObject.tag=="Player")
 		{
+			
+			if (!Player.instance.slamming)
+			{
 			dead=true;
 			Player.instance.gameObject.SetActive(false);
 			m_ps.gameObject.SetActive(true);
 			Player.instance.DeathSfx();
+			}
+			else
+			{
+		Player.instance.m_poof.Emit(8);
+        gameObject.SetActive(false);
+			}
 		}
 	}
 	public void GotHit()

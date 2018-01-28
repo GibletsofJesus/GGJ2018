@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ffa2d1cd621f4fafe31de36e8fec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSources: 3
+  numberOfSources: 30
   volumeMultiplayer: 1
   musicVolume: 1
   music: {fileID: 0}

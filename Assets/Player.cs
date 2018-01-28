@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [Header("Audio")]
     public AudioClip[] jump_sfx;
     public AudioClip[] death_sfx;
+    public AudioClip thud;
     
     [Header("Everything else")]
     public ParticleSystem m_poof,m_poof2;
@@ -97,6 +98,7 @@ public class Player : MonoBehaviour
             {
                 Screenshake.instance.Shake(.5f, 0.05f);            
                 m_poof2.Emit(4);
+                SoundManager.instance.PlaySound(thud);
             }
             if (Mathf.Abs(body.velocity.x) > .5f)
             {
@@ -173,8 +175,6 @@ public class Player : MonoBehaviour
     public float lastyVel = 0;
     void LateUpdate()
     {
-       
-        
         lastyVel = body.velocity.y;
     }
 

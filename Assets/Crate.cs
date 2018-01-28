@@ -7,6 +7,7 @@ public class Crate : MonoBehaviour , IGetHit{
 	public ParticleSystem m_ps;
 	public Collider2D m_col;
 	public SpriteRenderer m_spr;	
+	public AudioClip smash;
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -21,6 +22,7 @@ public class Crate : MonoBehaviour , IGetHit{
                 m_spr.enabled = false;
                 m_col.enabled = false;
                 m_ps.gameObject.SetActive(true);
+				SoundManager.instance.PlaySound(smash);
             }
 		}
 	}
