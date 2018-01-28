@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bun : MonoBehaviour {
+public class Bun : MonoBehaviour, IGetHit {
 
 	public Sprite[] m_sprites;
 	public SpriteRenderer m_spr;
@@ -22,7 +22,11 @@ public class Bun : MonoBehaviour {
 			Player.instance.DeathSfx();
 		}
 	}
-	
+	public void GotHit()
+    {
+        gameObject.SetActive(false);
+        //some particle of what
+    }
 	// Update is called once per frame
 	void Update () {
 		if (dead)
@@ -49,4 +53,9 @@ public class Bun : MonoBehaviour {
 		}
 		m_spr.sprite=m_sprites[Mathf.RoundToInt(frame/speed)];
 	}
+}
+
+public interface IGetHit
+{
+   void GotHit();
 }
