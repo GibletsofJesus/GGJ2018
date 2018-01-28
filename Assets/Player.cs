@@ -137,10 +137,24 @@ public class Player : MonoBehaviour
     bool OnGround()
     {
         Debug.DrawLine(rayPos, rayPos + (Vector2.down * (0.05f + Mathf.Abs(body.velocity.y / 100))), Color.red, 0.1f);
-        if (Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100)))
+        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100));
+        if (hit)
         {
+            if (slamming)
+            {
+                if (hit.collider.gameObject.GetComponent<IGetHit>() != null)
+                {
+                    hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
+                }
+                slamming = false;
+            }
             return true;
         }
+        //if (Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100)))
+        //{
+        //    slamming = false;
+        //    return true;
+        //}
         return false;
     }
 
@@ -159,15 +173,7 @@ public class Player : MonoBehaviour
     public float lastyVel = 0;
     void LateUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100));
-        if (hit && slamming)
-        {
-            if (hit.collider.gameObject.GetComponent<IGetHit>() != null)
-            {
-                //hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
-            }         
-            slamming = false;
-        } 
+       
         
         lastyVel = body.velocity.y;
     }
