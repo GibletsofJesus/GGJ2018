@@ -156,9 +156,10 @@ public class Player : MonoBehaviour
             if (hit.collider.gameObject.GetComponent<IGetHit>() != null)
             {
                 //hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
-            }            
+            }         
             slamming = false;
-        }
+        } 
+        
         lastyVel = body.velocity.y;
     }
 
@@ -207,7 +208,7 @@ public class Player : MonoBehaviour
             if (!wallJumping)
             {
                 if (jumpsRemaining != 0)
-                {
+                {                    
                     SoundManager.instance.PlaySound(jump_sfx[UnityEngine.Random.Range(0,jump_sfx.Length-1)]);
                     body.velocity = Vector2.up * jumpVel;
                     jumpsRemaining--;

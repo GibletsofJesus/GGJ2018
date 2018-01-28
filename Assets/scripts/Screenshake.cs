@@ -7,12 +7,12 @@ public class Screenshake : MonoBehaviour {
 	public static Screenshake instance;
 	public Vector3 camPosition;
 	float duration=0;
-	int amount;
+	float amount;
 	void Start()
 	{
 		instance=this;
 	}
-	public void Shake(int _amount, float dur)
+	public void Shake(float _amount, float dur)
 	{
 		amount=_amount;
 		if (duration < dur)
@@ -32,8 +32,8 @@ public class Screenshake : MonoBehaviour {
 		{
 		if (duration >0)
 		{
-			int x=1+Random.Range(0,amount);
-			int y=1+Random.Range(0,amount);
+			float x=.25f+Random.Range(0,amount);
+			float y=.25f+Random.Range(0,amount);
 			if (Random.value>.5f)
 				x*=-1;
 			if (Random.value>.5f)
