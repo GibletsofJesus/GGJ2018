@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public AudioClip[] death_sfx;
     
     [Header("Everything else")]
+    public ParticleSystem m_poof;
     public float maxHorizVelocity = 1.0f;
     private int lives = 3;
     public bool wallJumping = false;
