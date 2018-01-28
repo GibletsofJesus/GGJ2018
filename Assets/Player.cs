@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
             }
             else if (!slamming)
             {
-                body.velocity -= 5 * Time.deltaTime * new Vector2(body.velocity.x, 0);
+               body.velocity -= 10 * Time.deltaTime * new Vector2(body.velocity.x, 0);
             }
             if (Math.Abs(body.velocity.x) > maxHorizVelocity)
             {
