@@ -93,6 +93,8 @@ public class Player : MonoBehaviour
         }
         if (OnGround())
         {
+            if ( spRenderer.sprite == m_sprites[4])
+                Screenshake.instance.Shake(.5f, 0.05f);
             if (Mathf.Abs(body.velocity.x) > .5f)
             {
                 spRenderer.sprite = m_sprites[Mathf.RoundToInt(frame / 10)];
@@ -101,10 +103,12 @@ public class Player : MonoBehaviour
             else
             {
                 spRenderer.sprite = m_sprites[5 + Mathf.RoundToInt(Time.time % 1)];
-            }
-        }
+            }            
+       }
         else if (OnWall() && !slamming)
         {
+            if ( spRenderer.sprite == m_sprites[4])
+                Screenshake.instance.Shake(.5f, 0.05f);
             if (Controller.LX() > 0.25f && !spRenderer.flipX)
                 spRenderer.sprite = m_sprites[7];
             else if (Controller.LX() < -0.25f && spRenderer.flipX)
