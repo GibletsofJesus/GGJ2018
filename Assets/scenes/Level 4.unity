@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 177611253}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1293,7 +1293,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2064,11 +2064,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4588142517407246, guid: fde4e86719ccf7d43b283786d6a98789, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.994
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4588142517407246, guid: fde4e86719ccf7d43b283786d6a98789, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.97
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4588142517407246, guid: fde4e86719ccf7d43b283786d6a98789, type: 2}
       propertyPath: m_LocalPosition.z

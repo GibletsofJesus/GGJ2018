@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     BoxCollider2D collider;
     Vector2 rayPos;
     bool dj = true;
-    SpriteRenderer spRenderer;
+    public SpriteRenderer spRenderer;
     float fallMulti = 2.1f;
     float jumpMulti = 2;
     float stompMulti;

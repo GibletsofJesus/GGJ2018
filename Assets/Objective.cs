@@ -23,7 +23,6 @@ public class Objective : MonoBehaviour {
 	}
 	void Update()
 	{
-
 		if (GameStateManager.instance.m_state==GameStateManager.GameStates.STATE_GAMEPLAY)
 		{
 			Vector3 pos=Camera.main.transform.position;
@@ -57,7 +56,9 @@ public class Objective : MonoBehaviour {
 		while (lerpy<1)
 		{
 			lerpy+=Time.deltaTime;
-			m_circletransition.transform.position=Player.instance.transform.position;
+			Vector3 pos = Player.instance.transform.position;
+			pos.z=-0.1f;
+			m_circletransition.transform.position=pos;
 			m_circletransition.material.SetFloat("_SliceAmount",inout ? lerpy : 1-lerpy);
        		yield return new WaitForEndOfFrame();
 		}
@@ -69,6 +70,7 @@ public class Objective : MonoBehaviour {
 		Player.instance.enabled=false;
 		Player.instance.body.simulated=false;
 		float lerpy=0;
+		Player.instance.spRenderer.sprite=Player.instance.m_sprites[8];
 		while (lerpy<1)
 		{
 			lerpy+=Time.deltaTime;

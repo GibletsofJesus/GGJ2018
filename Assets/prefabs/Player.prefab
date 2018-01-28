@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1882990523351004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.994, y: -3.97, z: 0}
+  m_LocalPosition: {x: -2, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0256d6976a960ef4bb27443f93e215a9, type: 3}
   - {fileID: 21300000, guid: 4f38bab16a17f0743967d60c0e79fa41, type: 3}
   - {fileID: 21300000, guid: c71051808828c454aa7ae3a3fd2eee7d, type: 3}
+  - {fileID: 21300000, guid: 1ce554c2a7c157a4da1514a69b3eb7c5, type: 3}
   jump_sfx:
   - {fileID: 8300000, guid: d38491408643eba46bf76697c38b3eed, type: 3}
   - {fileID: 8300000, guid: 8977ac012def65849b5c697768cb7aba, type: 3}
@@ -124,6 +125,7 @@ MonoBehaviour:
   totalJumps: 2
   jumpsRemaining: 2
   body: {fileID: 50387012442976546}
+  spRenderer: {fileID: 0}
   lastyVel: 0
   slamming: 0
 --- !u!212 &212872701709326216
@@ -159,7 +161,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d39f287b8ba7acd428b2cd4cf63c332d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
