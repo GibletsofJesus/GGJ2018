@@ -270,7 +270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &177611254
 Transform:
   m_ObjectHideFlags: 0
@@ -328,11 +328,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 177611253}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!198 &296763963 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198360792479428558, guid: fde4e86719ccf7d43b283786d6a98789,
-    type: 2}
-  m_PrefabInternal: {fileID: 1326042940}
 --- !u!1001 &320449582
 Prefab:
   m_ObjectHideFlags: 0
@@ -2515,11 +2510,6 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 245.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114690940892650352, guid: fde4e86719ccf7d43b283786d6a98789,
-        type: 2}
-      propertyPath: m_poof2
-      value: 
-      objectReference: {fileID: 296763963}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fde4e86719ccf7d43b283786d6a98789, type: 2}
   m_IsPrefabParent: 0

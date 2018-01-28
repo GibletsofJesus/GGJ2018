@@ -8,16 +8,14 @@ public class DeathCounter : MonoBehaviour
     public Text counter;
     private void Awake()
     {
+       Player.instance.Dead += UpdateDeaths;
         deathcount = PlayerPrefs.GetInt("deaths");
     }
     private void OnEnable()
     {
-       Player.instance.Dead += UpdateDeaths;
     }
  
-    // Use this for initialization
-
-    void Start ()
+     void Start ()
     {
         counter.text = "Death Count : " + deathcount;// + "\nRating : " + rating[ratingNum];	
 	}

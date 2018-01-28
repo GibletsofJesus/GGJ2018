@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
 
     public void DeathSfx()
     {
-        Dead();
+        //Dead();
         SoundManager.instance.PlaySound(death_sfx[UnityEngine.Random.Range(0,death_sfx.Length-1)]);
         GameOver.instance.Died();
     }

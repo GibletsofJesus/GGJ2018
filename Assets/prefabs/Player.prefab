@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1256771718727454
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bf5f0f3e5aa8ea748a71df9179510a60, type: 3}
   - {fileID: 8300000, guid: 036b8dc2f402a6d49a7eaf178f809771, type: 3}
   m_poof: {fileID: 198888858288367712}
-  m_poof2: {fileID: 0}
+  m_poof2: {fileID: 198360792479428558}
   maxHorizVelocity: 5
   wallJumping: 0
   totalJumps: 2
