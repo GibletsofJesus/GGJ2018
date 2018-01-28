@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player instance;
-
+    public event Action Dead;
     [Header("Sprites")]
     public Sprite[] m_sprites;
     int frame;
@@ -219,6 +219,7 @@ public class Player : MonoBehaviour
 
     public void DeathSfx()
     {
+        Dead();
         SoundManager.instance.PlaySound(death_sfx[UnityEngine.Random.Range(0,death_sfx.Length-1)]);
         GameOver.instance.Died();
     }
