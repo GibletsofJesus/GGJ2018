@@ -17,7 +17,9 @@ public class LoopSong : MonoBehaviour {
         else
             Destroy(this);
 
+        source = GetComponent<AudioSource>();
         source.clip = clip;
+        source.volume = 0.1f;
         source.loop = true;
         source.Play();
     }
