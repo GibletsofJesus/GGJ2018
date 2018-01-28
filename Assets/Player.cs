@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Screen.SetResolution(1024,860,false);
         instance = this;
         jumpsRemaining = totalJumps;
         body = GetComponent<Rigidbody2D>();

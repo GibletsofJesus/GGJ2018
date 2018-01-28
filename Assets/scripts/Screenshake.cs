@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class Screenshake : MonoBehaviour {
 
@@ -46,19 +45,4 @@ public class Screenshake : MonoBehaviour {
 			Camera.main.transform.position=camPosition;
 		}
 	}
-}
-
-[CustomEditor(typeof(Screenshake))]
-public class ObjectBuilderEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        
-        Screenshake myScript = (Screenshake)target;
-        if(GUILayout.Button("shake"))
-        {
-          myScript.Shake(2,0.5f);
-        }
-    }
 }

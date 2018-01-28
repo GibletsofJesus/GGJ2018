@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &177611254
 Transform:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665401558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.01}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1975341007}
@@ -1396,32 +1396,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3664157343746974196, guid: 2948368b52d5aa044959921d4e85eac4,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2948368b52d5aa044959921d4e85eac4, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1201171387 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1905866320678642, guid: 2948368b52d5aa044959921d4e85eac4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1201171386}
---- !u!19719996 &1201171388
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1201171387}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
 --- !u!1001 &1260272924
 Prefab:
   m_ObjectHideFlags: 0
@@ -1482,7 +1459,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4588142517407246, guid: fde4e86719ccf7d43b283786d6a98789, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4588142517407246, guid: fde4e86719ccf7d43b283786d6a98789, type: 2}
       propertyPath: m_LocalPosition.z
