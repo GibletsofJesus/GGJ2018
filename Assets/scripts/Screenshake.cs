@@ -16,7 +16,10 @@ public class Screenshake : MonoBehaviour {
 	public void Shake(int _amount, float dur)
 	{
 		amount=_amount;
-		duration+=dur;
+		if (duration < dur)
+			duration=dur;
+		else
+			duration+=dur;
 	}
 
 	IEnumerator directionalshake()

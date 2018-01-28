@@ -19,6 +19,7 @@ public class Bun : MonoBehaviour {
 			dead=true;
 			Player.instance.gameObject.SetActive(false);
 			m_ps.gameObject.SetActive(true);
+			Player.instance.DeathSfx();
 		}
 	}
 	

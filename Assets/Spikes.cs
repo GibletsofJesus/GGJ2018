@@ -14,6 +14,7 @@ public class Spikes : MonoBehaviour {
 			m_ps.transform.position=Player.instance.transform.position;
 			Player.instance.gameObject.SetActive(false);
 			m_ps.gameObject.SetActive(true);
+			Player.instance.DeathSfx();
 		}
 	}
 

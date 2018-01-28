@@ -7,11 +7,17 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
+    [Header("Sprites")]
     public Sprite[] m_sprites;
     int frame;
 
-    private int lives = 3;
+    [Header("Audio")]
+    public AudioClip[] jump_sfx;
+    public AudioClip[] death_sfx;
+    
+    [Header("Everything else")]
     public float maxHorizVelocity = 1.0f;
+    private int lives = 3;
     public bool wallJumping = false;
     private float wallJumpTimer = 0.0f;
     public int totalJumps = 2;
@@ -23,7 +29,7 @@ public class Player : MonoBehaviour
     Vector2 rayPos;
     bool dj = true;
     SpriteRenderer spRenderer;
-    float fallMulti = 2.5f;
+    float fallMulti = 2.1f;
     float jumpMulti = 2;
     float stompMulti;
     float jumpVel = 5;
@@ -36,7 +42,7 @@ public class Player : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         rayPos = new Vector2(transform.position.x, collider.bounds.min.y);
         spRenderer = GetComponent<SpriteRenderer>();
-        stompMulti = fallMulti *2;
+        stompMulti = fallMulti *5;
     }
 
     private void Update()
@@ -142,6 +148,10 @@ public class Player : MonoBehaviour
     public float lastyVel = 0;
     void LateUpdate()
     {
+        
+        RaycastHit2D hit=Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100));
+        if (hit.gameObject.tag!="crate" || hit.gameObject.tag!="enemy")
+            slamming = false;
         lastyVel = body.velocity.y;
     }
 
@@ -149,7 +159,6 @@ public class Player : MonoBehaviour
     {
         if (OnGround())
         {
-            slamming = false;
             jumpsRemaining = totalJumps;
         }
         if ((Controller.Button() & ControllerButton.DOWN) != 0 && jumpsRemaining != totalJumps)
@@ -168,7 +177,7 @@ public class Player : MonoBehaviour
                 {
                     if (Physics2D.Raycast(new Vector2(collider.bounds.min.x, transform.position.y), -transform.right, 0.1f))
                     {
-                        //                        body.AddForce(jumpForce + new Vector2(400, 0));
+                        SoundManager.instance.PlaySound(jump_sfx[UnityEngine.Random.Range(0,jump_sfx.Length-1)]);
                         body.velocity = (Vector2.up * jumpVel) + ((Vector2.right) * jumpVel);
 
                         wallJumping = true;
@@ -180,7 +189,7 @@ public class Player : MonoBehaviour
                 {
                     if (Physics2D.Raycast(new Vector2(collider.bounds.max.x, transform.position.y), transform.right, 0.1f))
                     {
-                        //body.AddForce(jumpForce + new Vector2(-400, 0));
+                        SoundManager.instance.PlaySound(jump_sfx[UnityEngine.Random.Range(0,jump_sfx.Length-1)]);
                         body.velocity = (Vector2.up * jumpVel) + ((-Vector2.right) * jumpVel);
                         wallJumping = true;
                         wallJumpTimer = 0.0f;
@@ -192,11 +201,17 @@ public class Player : MonoBehaviour
             {
                 if (jumpsRemaining != 0)
                 {
+                    SoundManager.instance.PlaySound(jump_sfx[UnityEngine.Random.Range(0,jump_sfx.Length-1)]);
                     body.velocity = Vector2.up * jumpVel;
                     jumpsRemaining--;
                 }
             }
         }
+    }
+
+    public void DeathSfx()
+    {
+        SoundManager.instance.PlaySound(death_sfx[UnityEngine.Random.Range(0,death_sfx.Length-1)]);
     }
 
     public bool slamming = false;
