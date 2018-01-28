@@ -15,6 +15,7 @@ public class Objective : MonoBehaviour {
 		PlayerPrefs.SetInt("Level"+level_index,1);//1 means complete!
 		GameStateManager.instance.ChangeState(GameStateManager.GameStates.STATE_LEVELCOMPLETE);
 		StartCoroutine(EndSequence());
+        GameOver.instance.LevelEnd();
 	}
 	void Start()
 	{
@@ -84,6 +85,7 @@ public class Objective : MonoBehaviour {
 			{
 				yield return null;
 			}
+        GameOver.instance.Deactivate();
 			StartCoroutine(CircleTransition(false));
 			level_index++;
 			StartCoroutine(restart());
