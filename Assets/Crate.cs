@@ -12,6 +12,7 @@ public class Crate : MonoBehaviour , IGetHit{
 	{
 		if(col.gameObject.tag=="Player")
 		{
+			Debug.Log(Player.instance.slamming);
 			if (Player.instance.slamming)
 			{
                 //break;

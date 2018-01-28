@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
             }
             else if (!slamming)
             {
-                body.velocity -= 5 * Time.deltaTime * new Vector2(body.velocity.x, 0);
+               body.velocity -= 10 * Time.deltaTime * new Vector2(body.velocity.x, 0);
             }
             if (Math.Abs(body.velocity.x) > maxHorizVelocity)
             {
@@ -150,16 +150,15 @@ public class Player : MonoBehaviour
     public float lastyVel = 0;
     void LateUpdate()
     {
-
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.down, 0.05f + Mathf.Abs(body.velocity.y / 100));
-        if (hit)
+        if (hit && slamming)
         {
             if (hit.collider.gameObject.GetComponent<IGetHit>() != null)
             {
-                hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
-            }
+                //hit.collider.gameObject.GetComponent<IGetHit>().GotHit();
+            }            
+            slamming = false;
         }
-        slamming = false;
         lastyVel = body.velocity.y;
     }
 
