@@ -24,6 +24,7 @@ public class Bun : MonoBehaviour, IGetHit {
 	}
 	public void GotHit()
     {
+		Player.instance.m_poof.Emit(8);
         gameObject.SetActive(false);
         //some particle of what
     }
