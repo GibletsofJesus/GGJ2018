@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public AudioClip[] death_sfx;
     
     [Header("Everything else")]
-    public ParticleSystem m_poof;
+    public ParticleSystem m_poof,m_poof2;
     public float maxHorizVelocity = 1.0f;
     private int lives = 3;
     public bool wallJumping = false;
@@ -94,7 +94,10 @@ public class Player : MonoBehaviour
         if (OnGround())
         {
             if ( spRenderer.sprite == m_sprites[4])
-                Screenshake.instance.Shake(.5f, 0.05f);
+            {
+                Screenshake.instance.Shake(.5f, 0.05f);            
+                m_poof2.Emit(4);
+            }
             if (Mathf.Abs(body.velocity.x) > .5f)
             {
                 spRenderer.sprite = m_sprites[Mathf.RoundToInt(frame / 10)];
@@ -108,7 +111,9 @@ public class Player : MonoBehaviour
         else if (OnWall() && !slamming)
         {
             if ( spRenderer.sprite == m_sprites[4])
-                Screenshake.instance.Shake(.5f, 0.05f);
+         {       Screenshake.instance.Shake(.5f, 0.05f);
+                m_poof2.Emit(4);
+        }
             if (Controller.LX() > 0.25f && !spRenderer.flipX)
                 spRenderer.sprite = m_sprites[7];
             else if (Controller.LX() < -0.25f && spRenderer.flipX)
@@ -190,8 +195,7 @@ public class Player : MonoBehaviour
                     if (Physics2D.Raycast(new Vector2(collider.bounds.min.x, transform.position.y), -transform.right, 0.1f))
                     {
                         SoundManager.instance.PlaySound(jump_sfx[UnityEngine.Random.Range(0,jump_sfx.Length-1)]);
-                        body.velocity = (Vector2.up * jumpVel) + ((Vector2.right) * jumpVel);
-
+                        body.velocity = (Vector2.up * jumpVel) + ((Vector2.right) * jumpVel);   
                         wallJumping = true;
                         wallJumpTimer = 0.0f;
                         jumpsRemaining = 1;
@@ -212,7 +216,8 @@ public class Player : MonoBehaviour
             if (!wallJumping)
             {
                 if (jumpsRemaining != 0)
-                {                    
+                {                       
+                    m_poof2.Emit(4);
                     SoundManager.instance.PlaySound(jump_sfx[UnityEngine.Random.Range(0,jump_sfx.Length-1)]);
                     body.velocity = Vector2.up * jumpVel;
                     jumpsRemaining--;
